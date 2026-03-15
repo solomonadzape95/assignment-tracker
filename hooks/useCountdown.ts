@@ -5,12 +5,10 @@ import { getTimeRemaining, type TimeRemaining } from "@/utils/dates";
 
 export function useCountdown(deadline: string | Date): TimeRemaining {
   const [remaining, setRemaining] = useState<TimeRemaining>(() =>
-    getTimeRemaining(deadline)
+    getTimeRemaining(deadline),
   );
 
   useEffect(() => {
-    setRemaining(getTimeRemaining(deadline));
-
     const interval = setInterval(() => {
       setRemaining(getTimeRemaining(deadline));
     }, 1000);

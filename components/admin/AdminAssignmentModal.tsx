@@ -43,7 +43,7 @@ export function AdminAssignmentModal({
   if (!open || !assignment) return null;
 
   async function handleSave() {
-    if (mode !== "edit") return;
+    if (mode !== "edit" || !assignment) return;
     setSaving(true);
     setError(null);
 

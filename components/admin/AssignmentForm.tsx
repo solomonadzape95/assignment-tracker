@@ -54,7 +54,7 @@ export function AssignmentForm({ onCreated }: AssignmentFormProps) {
           deadline: new Date(deadline).toISOString(),
           slug,
         })
-        .select("id, title, course_code, deadline, created_at, slug")
+        .select("id, title, course_code, description, deadline, created_at, slug")
         .maybeSingle();
 
       if (insertError) {
@@ -73,7 +73,7 @@ export function AssignmentForm({ onCreated }: AssignmentFormProps) {
           });
           setInfo("Assignment created and notifications added.");
           showToast("Assignment created and notifications added.", "success");
-        } catch (notifyError: any) {
+        } catch (notifyError) {
           // eslint-disable-next-line no-console
           console.error(notifyError);
           setInfo("Assignment created, but notifications could not be added.");
@@ -88,10 +88,12 @@ export function AssignmentForm({ onCreated }: AssignmentFormProps) {
       setCourseCode("");
       setDescription("");
       setDeadline("");
-    } catch (err: any) {
+    } catch (err) {
       // eslint-disable-next-line no-console
       console.error(err);
-      setError(err?.message ?? "Failed to create assignment.");
+      setError(
+        err instanceof Error ? err.message : "Failed to create assignment.",
+      );
     } finally {
       setLoading(false);
     }

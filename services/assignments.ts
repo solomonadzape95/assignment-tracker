@@ -27,7 +27,8 @@ export async function getAssignmentForStudentServer(
 
   const statusRow =
     (data.assignment_status || []).find(
-      (s: any) => s.student_id === studentId
+      (s: { status: string; completed_at: string | null; student_id: string }) =>
+        s.student_id === studentId
     ) ?? null;
 
   const status = statusRow?.status ?? "pending";

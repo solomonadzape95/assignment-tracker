@@ -76,7 +76,7 @@ export async function getCurrentUserAndProfile(
   return {
     user: {
       id: user.id,
-      email: user.email,
+      email: user.email ?? null,
       user_metadata: user.user_metadata ?? {},
       role:
         (user.user_metadata?.role as string | undefined) ??

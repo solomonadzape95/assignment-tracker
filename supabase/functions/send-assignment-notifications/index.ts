@@ -1,4 +1,5 @@
-// Supabase Edge Function: send-assignment-notifications
+// @ts-nocheck
+  // Supabase Edge Function: send-assignment-notifications
 // Sends email notifications to all registered students when a new assignment
 // is created.
 
@@ -78,7 +79,7 @@ serve(async (req) => {
     }
 
     const recipients = (profiles ?? [])
-      .map((p: any) => p.email as string)
+      .map((p: { email: string | null }) => p.email as string)
       .filter(Boolean);
 
     if (recipients.length === 0) {

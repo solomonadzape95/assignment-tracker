@@ -56,9 +56,17 @@ export function useAssignments(studentId: string): UseAssignmentsResult {
         }
 
         const enriched: AssignmentWithStatus[] =
-          (data ?? []).map((row: any) => {
+          (data ?? []).map((row: {
+            id: string;
+            title: string;
+            description: string;
+            course_code: string;
+            deadline: string;
+            slug: string;
+            assignment_status?: { status: AssignmentStatusValue; completed_at: string | null; student_id: string }[];
+          }) => {
             const statusRow = (row.assignment_status || []).find(
-              (s: any) => s.student_id === studentId
+              (s) => s.student_id === studentId
             );
 
             const status: AssignmentStatusValue = statusRow?.status ?? "pending";
@@ -96,7 +104,9 @@ export function useAssignments(studentId: string): UseAssignmentsResult {
       };
     }
 
-    const channel = supabaseBrowserClient
+    const client = supabaseBrowserClient;
+
+    const channel = client
       .channel("assignments-realtime")
       .on(
         "postgres_changes",
@@ -110,7 +120,7 @@ export function useAssignments(studentId: string): UseAssignmentsResult {
 
     return () => {
       isMounted = false;
-      supabaseBrowserClient.removeChannel(channel);
+      client.removeChannel(channel);
     };
     // We intentionally omit `studentId` from dependencies for the realtime
     // subscription, as it is expected to be stable for the session.
