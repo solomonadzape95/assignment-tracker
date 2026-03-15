@@ -1,26 +1,42 @@
 @import "tailwindcss";
 
+/* Design tokens aligned with dark UniTask-style UI */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Base dark palette */
+  --background-dark: #050815;
+  --background-light: #050815;
+  --foreground: #e5e7eb;
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
 }
 
 @theme inline {
-  --color-background: var(--background);
+  --color-background-light: var(--background-dark);
+  --color-background-dark: var(--background-dark);
+  --color-background: var(--background-dark);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --radius: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background-light);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+}
+
+.glass-effect {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
