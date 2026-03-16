@@ -7,7 +7,7 @@ interface VerificationCardProps {
 
 export function VerificationCard({ student }: VerificationCardProps) {
   return (
-    <div className="bg-primary/5 border border-primary/20 rounded-2xl p-5 relative overflow-hidden">
+    <div className="bg-slate-800/80 border border-slate-700 rounded-2xl p-5 relative overflow-hidden">
       <div className="absolute -right-4 -top-4 opacity-10">
         <Icon name="school" size={48} className="text-primary" />
       </div>
@@ -17,28 +17,28 @@ export function VerificationCard({ student }: VerificationCardProps) {
             <Icon name="person" size={32} className="text-primary" />
           </div>
           <div>
-            <h4 className="font-bold text-slate-900 text-lg">
+            <h4 className="font-bold text-slate-50 text-lg">
               {student.fullname}
             </h4>
-            <p className="text-xs text-primary font-medium tracking-wide">
+            <p className="text-xs text-slate-300 font-medium tracking-wide">
               {student.reg_no}
             </p>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-4 pt-2">
           <div>
-            <p className="text-[10px] text-slate-500 uppercase font-bold">
+            <p className="text-[10px] text-slate-400 uppercase font-bold">
               Department
             </p>
-            <p className="text-sm font-semibold text-slate-800">
+            <p className="text-sm font-semibold text-slate-200">
               {student.department}
             </p>
           </div>
           <div>
-            <p className="text-[10px] text-slate-500 uppercase font-bold">
+            <p className="text-[10px] text-slate-400 uppercase font-bold">
               Level
             </p>
-            <p className="text-sm font-semibold text-slate-800">
+            <p className="text-sm font-semibold text-slate-200">
               {student.level}
             </p>
           </div>

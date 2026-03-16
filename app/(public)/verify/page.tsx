@@ -17,12 +17,12 @@ export default async function VerifyStudentPage({
 
   if (!studentId) {
     return (
-      <main className="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex items-center justify-center">
+      <main className="bg-background-dark font-display text-slate-100 min-h-screen flex items-center justify-center">
         <div className="w-full max-w-md px-6 text-center space-y-3">
-          <p className="text-sm font-medium text-slate-900">
+          <p className="text-sm font-medium text-slate-50">
             Missing student information
           </p>
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-slate-300">
             Please go back and enter your registration number again.
           </p>
         </div>
@@ -34,12 +34,12 @@ export default async function VerifyStudentPage({
 
   if (!student) {
     return (
-      <main className="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex items-center justify-center">
+      <main className="bg-background-dark font-display text-slate-100 min-h-screen flex items-center justify-center">
         <div className="w-full max-w-md px-6 text-center space-y-3">
-          <p className="text-sm font-medium text-slate-900">
+          <p className="text-sm font-medium text-slate-50">
             Student record not found
           </p>
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-slate-300">
             The linked student record could not be found. Please restart the
             verification process.
           </p>
@@ -49,17 +49,17 @@ export default async function VerifyStudentPage({
   }
 
   return (
-    <main className="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
-      <div className="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-white dark:bg-slate-900 shadow-xl overflow-x-hidden">
+    <main className="bg-background-dark font-display text-slate-100 min-h-screen flex flex-col">
+      <div className="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-slate-950 shadow-xl overflow-x-hidden">
         {/* Header */}
-        <div className="flex items-center bg-white dark:bg-slate-900 p-4 pb-2 justify-between border-b border-slate-100 dark:border-slate-800">
+        <div className="flex items-center bg-slate-950 p-4 pb-2 justify-between border-b border-slate-800">
           <Link
             href="/"
-            className="text-primary flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-slate-100"
+            className="text-slate-200 flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-slate-800 transition-colors"
           >
             <Icon name="arrow_back" size={24} />
           </Link>
-          <h2 className="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">
+          <h2 className="text-slate-50 text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">
             Verification
           </h2>
         </div>
@@ -70,25 +70,25 @@ export default async function VerifyStudentPage({
             <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white text-sm font-bold">
               1
             </div>
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-primary">
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-300">
               Identify
             </span>
           </div>
-          <div className="h-[2px] w-8 bg-slate-200 -mt-6" />
+          <div className="h-[2px] w-8 bg-slate-600 -mt-6" />
           <div className="flex flex-col items-center gap-2">
             <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white text-sm font-bold">
               2
             </div>
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-primary">
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-300">
               Confirm
             </span>
           </div>
-          <div className="h-[2px] w-8 bg-slate-200 -mt-6" />
+          <div className="h-[2px] w-8 bg-slate-600 -mt-6" />
           <div className="flex flex-col items-center gap-2">
-            <div className="h-8 w-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 text-sm font-bold">
+            <div className="h-8 w-8 rounded-full bg-slate-700 flex items-center justify-center text-slate-200 text-sm font-bold">
               3
             </div>
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-300">
               Account
             </span>
           </div>
@@ -99,10 +99,10 @@ export default async function VerifyStudentPage({
           {/* Step 2: Verification Card */}
           <section className="mb-8">
             <div className="mb-4 flex items-center justify-between">
-              <h3 className="text-slate-900 text-lg font-bold">
+              <h3 className="text-slate-50 text-lg font-bold">
                 Verify it&apos;s you
               </h3>
-              <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full font-bold">
+              <span className="text-xs bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded-full font-bold border border-emerald-500/30">
                 Record found
               </span>
             </div>
@@ -112,10 +112,10 @@ export default async function VerifyStudentPage({
           {/* Step 3: Account creation */}
           <section className="mb-10">
             <div className="mb-4">
-              <h3 className="text-slate-900 text-xl font-bold leading-tight">
+              <h3 className="text-slate-50 text-xl font-bold leading-tight">
                 Secure your account
               </h3>
-              <p className="text-slate-500 text-sm mt-1">
+              <p className="text-slate-300 text-sm mt-1">
                 Set up your login credentials.
               </p>
             </div>
@@ -127,9 +127,9 @@ export default async function VerifyStudentPage({
         </div>
 
         {/* Bottom helper */}
-        <div className="absolute bottom-0 left-0 right-0 bg-white/80 backdrop-blur-md border-t border-slate-100 px-6 py-4">
+        <div className="absolute bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 px-6 py-4">
           <div className="flex items-center justify-center gap-1">
-            <p className="text-slate-500 text-sm">
+            <p className="text-slate-300 text-sm">
               Already verified?
             </p>
             <a href="/sign-in" className="text-primary font-bold text-sm">

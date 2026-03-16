@@ -80,7 +80,7 @@ export function SignupForm({ studentId, studentName }: SignupFormProps) {
       <div className="space-y-2">
         <label
           htmlFor="email"
-          className="block text-xs font-semibold text-slate-500 uppercase mb-1 ml-1"
+          className="block text-xs font-semibold text-slate-300 uppercase mb-1 ml-1"
         >
           Email
         </label>
@@ -90,7 +90,7 @@ export function SignupForm({ studentId, studentName }: SignupFormProps) {
           autoComplete="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-sm"
+          className="w-full px-4 py-3 rounded-xl border border-slate-700 bg-slate-900 text-slate-50 placeholder:text-slate-500 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-sm"
           required
         />
       </div>
@@ -98,7 +98,7 @@ export function SignupForm({ studentId, studentName }: SignupFormProps) {
       <div className="space-y-2">
         <label
           htmlFor="password"
-          className="block text-xs font-semibold text-slate-500 uppercase mb-1 ml-1"
+          className="block text-xs font-semibold text-slate-300 uppercase mb-1 ml-1"
         >
           Password
         </label>
@@ -108,19 +108,19 @@ export function SignupForm({ studentId, studentName }: SignupFormProps) {
           autoComplete="new-password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
-          className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-sm"
+          className="w-full px-4 py-3 rounded-xl border border-slate-700 bg-slate-900 text-slate-50 placeholder:text-slate-500 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-sm"
           required
         />
       </div>
 
       {error ? (
-        <p className="text-sm text-red-600" role="alert">
+        <p className="text-sm text-red-400" role="alert">
           {error}
         </p>
       ) : null}
 
       {message ? (
-        <p className="text-sm text-emerald-700" role="status">
+        <p className="text-sm text-emerald-400" role="status">
           {message}
         </p>
       ) : null}
