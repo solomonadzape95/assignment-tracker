@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import { supabaseBrowserClient } from "@/lib/supabase/client";
 import { Button } from "@/components/common/Button";
 import { useToast } from "@/hooks/useToast";
@@ -11,6 +12,7 @@ interface SignupFormProps {
 }
 
 export function SignupForm({ studentId, studentName }: SignupFormProps) {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -40,33 +42,48 @@ export function SignupForm({ studentId, studentName }: SignupFormProps) {
 
     setLoading(true);
     try {
-      const origin =
-        typeof window !== "undefined" ? window.location.origin : undefined;
-
-      const { error: signUpError } = await supabaseBrowserClient.auth.signUp({
-        email,
-        password,
-        options: {
-          emailRedirectTo: origin
-            ? `${origin}/dashboard`
-            : undefined,
-          data: {
-            student_id: studentId,
-            full_name: studentName,
-          },
+      const response = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
+        body: JSON.stringify({
+          email,
+          password,
+          studentId,
+          studentName,
+        }),
       });
 
-      if (signUpError) {
-        setError(signUpError.message);
-        showToast(signUpError.message, "error");
+      const result = (await response.json()) as { error?: string };
+
+      if (!response.ok || result.error) {
+        const msg =
+          result.error ?? "Failed to create your account. Please try again.";
+        setError(msg);
+        showToast(msg, "error");
+        return;
+      }
+      // Automatically sign the user in now that their account exists and is confirmed.
+      const { error: signInError } =
+        await supabaseBrowserClient.auth.signInWithPassword({
+          email,
+          password,
+        });
+
+      if (signInError) {
+        const msg =
+          signInError.message ||
+          "Account created, but we couldn't sign you in automatically. Please try signing in.";
+        setError(msg);
+        showToast(msg, "error");
         return;
       }
 
-      const successMsg =
-        "Account created. Check your email for the verification link.";
+      const successMsg = "Account created and signed in successfully.";
       setMessage(successMsg);
       showToast(successMsg, "success");
+      router.replace("/dashboard");
     } catch (err) {
       console.error(err);
       setError("Something went wrong. Please try again.");
